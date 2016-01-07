@@ -1,12 +1,12 @@
 #include <iostream>
 #include <sstream>
 using namespace std;
-#include "andgate.h"
+#include "xorgate.h"
 
 
-int AndGate::ourCount = 0;
+int XorGate::ourCount = 0;
 
-AndGate::AndGate(Wire * in, Wire* in2, Wire * out, const string& name)
+XorGate::XorGate(Wire * in, Wire* in2, Wire * out, const string& name)
   : NMGate(ourCount, name)
 {
     vector<Wire *> ins(2), outs(1);
@@ -17,7 +17,7 @@ AndGate::AndGate(Wire * in, Wire* in2, Wire * out, const string& name)
     ourCount++;
 }
 
-AndGate::AndGate(const string& name)
+XorGate::XorGate(const string& name)
   : NMGate(ourCount,name)
 {
     vector<Wire *> ins(2), outs(1);
@@ -28,20 +28,22 @@ AndGate::AndGate(const string& name)
     ourCount++;
 }
 
-Gate * AndGate::clone()
+Gate * XorGate::clone()
 {
-    return new AndGate(myName);
+    return new XorGate(myName);
 }
 
 
-void AndGate::Act( )
+void XorGate::Act( )
 {
-    myOuts[0]->SetSignal(myIns[0]->GetSignal() && myIns[1]->GetSignal());
+    myOuts[0]->SetSignal(((!myIns[0]->GetSignal()) && myIns[1]->GetSignal())
+                        ||(myIns[0]->GetSignal() && (!myIns[1]->GetSignal())));
 }
 
-string AndGate::tostring() const
+string XorGate::tostring() const
 {
     ostringstream out;
-    out << "and (" << myNumber << ") " << myName;
+    out << "xor (" << myNumber << ") " << myName;
     return out.str();
 }
+

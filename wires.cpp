@@ -121,7 +121,8 @@ void ConnectorIterator::Next()
     int k;
     myConnector = 0;
     for(k=myIndex+1; k < myWire->myGates.size(); k++)
-    {   Connector * c= dynamic_cast<Connector *> (myWire->myGates[k]);
+    {
+        Connector * c= dynamic_cast<Connector *> (myWire->myGates[k]);
         if (c != 0)
         {   myConnector = c;
             myIndex = k;

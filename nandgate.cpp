@@ -1,12 +1,12 @@
 #include <iostream>
 #include <sstream>
 using namespace std;
-#include "andgate.h"
+#include "nandgate.h"
+#include "wires.h"
 
+int NandGate::ourCount = 0;
 
-int AndGate::ourCount = 0;
-
-AndGate::AndGate(Wire * in, Wire* in2, Wire * out, const string& name)
+NandGate::NandGate(Wire * in, Wire* in2, Wire * out, const string& name)
   : NMGate(ourCount, name)
 {
     vector<Wire *> ins(2), outs(1);
@@ -17,7 +17,7 @@ AndGate::AndGate(Wire * in, Wire* in2, Wire * out, const string& name)
     ourCount++;
 }
 
-AndGate::AndGate(const string& name)
+NandGate::NandGate(const string& name)
   : NMGate(ourCount,name)
 {
     vector<Wire *> ins(2), outs(1);
@@ -28,20 +28,20 @@ AndGate::AndGate(const string& name)
     ourCount++;
 }
 
-Gate * AndGate::clone()
+Gate * NandGate::clone()
 {
-    return new AndGate(myName);
+    return new NandGate(myName);
 }
 
 
-void AndGate::Act( )
+void NandGate::Act()
 {
-    myOuts[0]->SetSignal(myIns[0]->GetSignal() && myIns[1]->GetSignal());
+    myOuts[0]->SetSignal(!(myIns[0]->GetSignal() && myIns[1]->GetSignal()));
 }
 
-string AndGate::tostring() const
+string NandGate::tostring() const
 {
     ostringstream out;
-    out << "and (" << myNumber << ") " << myName;
+    out << "nand (" << myNumber << ") " << myName;
     return out.str();
 }

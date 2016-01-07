@@ -1,12 +1,9 @@
-#include <iostream>
+#include "orgate.h"
 #include <sstream>
-using namespace std;
-#include "andgate.h"
 
+int OrGate::ourCount = 0;
 
-int AndGate::ourCount = 0;
-
-AndGate::AndGate(Wire * in, Wire* in2, Wire * out, const string& name)
+OrGate::OrGate(Wire * in, Wire* in2, Wire * out, const string& name)
   : NMGate(ourCount, name)
 {
     vector<Wire *> ins(2), outs(1);
@@ -17,7 +14,7 @@ AndGate::AndGate(Wire * in, Wire* in2, Wire * out, const string& name)
     ourCount++;
 }
 
-AndGate::AndGate(const string& name)
+OrGate::OrGate(const string& name)
   : NMGate(ourCount,name)
 {
     vector<Wire *> ins(2), outs(1);
@@ -28,20 +25,20 @@ AndGate::AndGate(const string& name)
     ourCount++;
 }
 
-Gate * AndGate::clone()
+
+void OrGate::Act( )
 {
-    return new AndGate(myName);
+    myOuts[0]->SetSignal(myIns[0]->GetSignal() || myIns[1]->GetSignal());
 }
 
-
-void AndGate::Act( )
-{
-    myOuts[0]->SetSignal(myIns[0]->GetSignal() && myIns[1]->GetSignal());
-}
-
-string AndGate::tostring() const
+string OrGate::tostring() const
 {
     ostringstream out;
-    out << "and (" << myNumber << ") " << myName;
+    out << "or (" << myNumber << ") " << myName;
     return out.str();
+}
+
+Gate * OrGate::clone()
+{
+    return new OrGate(myName);
 }

@@ -1,15 +1,7 @@
 #ifndef ANDGATE_H
 #define ANDGATE_H
 
-#include <iostream>
-#include <string>
-#include <vector>
-#include "gates.h"
-using namespace std;
-
-class Wire;
-class Gate;
-
+#include "nmgate.h"
 
 class AndGate : public NMGate
 {

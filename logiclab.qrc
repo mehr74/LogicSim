@@ -1,0 +1,11 @@
+<RCC>
+    <qresource prefix="/">
+        <file>src/andgate.jpg</file>
+        <file>src/inverter.jpg</file>
+        <file>src/nandgate.jpg</file>
+        <file>src/norgate.jpg</file>
+        <file>src/orgate.jpg</file>
+        <file>src/xnorgate.jpg</file>
+        <file>src/xorgate.jpg</file>
+    </qresource>
+</RCC>

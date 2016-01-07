@@ -1,15 +1,47 @@
 TEMPLATE = app
+
 CONFIG += console
-CONFIG -= app_bundle
-CONFIG -= qt
+CONFIG += qt
+
+QT += widgets
+
+INCLUDEPATH += .
+DEPENDPATH += .
 
 SOURCES += main.cpp \
-    gates.cpp \
     wires.cpp \
-    andgate.cpp
+    andgate.cpp \
+    connector.cpp \
+    gatetester.cpp \
+    inverter.cpp \
+    nmgate.cpp \
+    orgate.cpp \
+    gate.cpp \
+    nandgate.cpp \
+    xorgate.cpp \
+    norgate.cpp \
+    voltmeter.cpp
 
 HEADERS += \
-    gates.h \
     wires.h \
-    andgate.h
+    andgate.h \
+    connector.h \
+    gatetester.h \
+    inverter.h \
+    nmgate.h \
+    orgate.h \
+    gate.h \
+    gates.h \
+    nandgate.h \
+    xorgate.h \
+    norgate.h \
+    voltmeter.h
+
+OTHER_FILES +=
+
+RESOURCES += \
+    logiclab.qrc
+
+FORMS += \
+    mainwindow.ui
 
