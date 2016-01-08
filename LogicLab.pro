@@ -20,7 +20,10 @@ SOURCES += main.cpp \
     nandgate.cpp \
     xorgate.cpp \
     norgate.cpp \
-    voltmeter.cpp
+    voltmeter.cpp \
+    mainwindow.cpp \
+    gatelist.cpp \
+    gatesmodel.cpp
 
 HEADERS += \
     wires.h \
@@ -35,7 +38,11 @@ HEADERS += \
     nandgate.h \
     xorgate.h \
     norgate.h \
-    voltmeter.h
+    voltmeter.h \
+    mainwindow.h \
+    gatelist.h \
+    gatesmodel.h \
+    gatetextures.h
 
 OTHER_FILES +=
 

@@ -7,5 +7,9 @@
         <file>src/orgate.jpg</file>
         <file>src/xnorgate.jpg</file>
         <file>src/xorgate.jpg</file>
+        <file>src/offbit.jpg</file>
+        <file>src/onbit.jpg</file>
+        <file>src/voltmeter.jpg</file>
+        <file>src/empty.jpg</file>
     </qresource>
 </RCC>
