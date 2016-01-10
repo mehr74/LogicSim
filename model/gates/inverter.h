@@ -1,7 +1,7 @@
 #ifndef INVERTER_H
 #define INVERTER_H
 
-#include "gates.h"
+#include "model/model.h"
 
 class Inverter : public Gate
 {

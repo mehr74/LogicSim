@@ -4,7 +4,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
-#include "wires.h"
+#include "model/wires/wires.h"
 using namespace std;
 class WireFactory;
 class Gate

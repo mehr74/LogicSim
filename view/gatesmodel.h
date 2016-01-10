@@ -4,7 +4,7 @@
 #include <QAbstractListModel>
 #include <QPoint>
 #include <QIcon>
-#include "gatetextures.h"
+#include "model/gatetextures.h"
 
 class GatesModel : public QAbstractListModel
 {

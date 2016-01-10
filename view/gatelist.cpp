@@ -6,7 +6,7 @@
 #include <QDrag>
 #include <QMimeData>
 #include <QHoverEvent>
-#include "gatetextures.h"
+#include "model/gatetextures.h"
 using namespace std;
 
 GateList::GateList(QWidget *parent, const QSize size)

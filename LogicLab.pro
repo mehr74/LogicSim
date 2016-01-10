@@ -9,42 +9,43 @@ INCLUDEPATH += .
 DEPENDPATH += .
 
 SOURCES += main.cpp \
-    wires.cpp \
-    andgate.cpp \
-    connector.cpp \
-    gatetester.cpp \
-    inverter.cpp \
-    nmgate.cpp \
-    orgate.cpp \
-    gate.cpp \
-    nandgate.cpp \
-    xorgate.cpp \
-    norgate.cpp \
-    voltmeter.cpp \
-    mainwindow.cpp \
-    gatelist.cpp \
-    gatesmodel.cpp \
-    circuit.cpp
+    model/gates/andgate.cpp \
+    model/gates/connector.cpp \
+    model/gates/gate.cpp \
+    model/gates/inverter.cpp \
+    model/gates/nandgate.cpp \
+    model/gates/nmgate.cpp \
+    model/gates/norgate.cpp \
+    model/gates/orgate.cpp \
+    model/gates/xorgate.cpp \
+    model/probes/gatetester.cpp \
+    model/probes/voltmeter.cpp \
+    model/wires/wires.cpp \
+    view/gatelist.cpp \
+    view/gatesmodel.cpp \
+    view/mainwindow.cpp \
+    view/circuit.cpp
 
 HEADERS += \
-    wires.h \
-    andgate.h \
-    connector.h \
-    gatetester.h \
-    inverter.h \
-    nmgate.h \
-    orgate.h \
-    gate.h \
-    gates.h \
-    nandgate.h \
-    xorgate.h \
-    norgate.h \
-    voltmeter.h \
-    mainwindow.h \
-    gatelist.h \
-    gatesmodel.h \
-    gatetextures.h \
-    circuit.h
+    model/gates/andgate.h \
+    model/gates/connector.h \
+    model/gates/gate.h \
+    model/gates/inverter.h \
+    model/gates/nandgate.h \
+    model/gates/nmgate.h \
+    model/gates/norgate.h \
+    model/gates/orgate.h \
+    model/gates/xorgate.h \
+    model/probes/gatetester.h \
+    model/probes/voltmeter.h \
+    model/wires/wires.h \
+    model/gatetextures.h \
+    model/model.h \
+    view/gatelist.h \
+    view/gatesmodel.h \
+    view/mainwindow.h \
+    view/circuit.h
+
 
 OTHER_FILES +=
 
@@ -52,5 +53,5 @@ RESOURCES += \
     logiclab.qrc
 
 FORMS += \
-    mainwindow.ui
+    view/mainwindow.ui
 

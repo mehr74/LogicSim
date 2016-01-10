@@ -1,7 +1,7 @@
 #ifndef VOLTMETER_H
 #define VOLTMETER_H
 
-#include "gate.h"
+#include "model/gates/gate.h"
 
 class VoltMeter : public Gate
 {

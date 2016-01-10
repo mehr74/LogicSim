@@ -1,5 +1,5 @@
 #include "circuit.h"
-#include "gatetextures.h"
+#include "model/gatetextures.h"
 
 Circuit::Circuit()
 {

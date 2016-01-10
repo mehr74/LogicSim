@@ -3,7 +3,7 @@
 #include "gatelist.h"
 #include "gatesmodel.h"
 #include "QListView"
-#include "gatetextures.h"
+#include "model/gatetextures.h"
 
 using namespace Qt;
 

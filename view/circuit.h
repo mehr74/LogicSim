@@ -1,7 +1,7 @@
 #ifndef CIRCUIT_H
 #define CIRCUIT_H
 
-#include "gates.h"
+#include "model/model.h"
 #include <vector>
 
 class Circuit

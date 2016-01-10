@@ -2,7 +2,7 @@
 #include <sstream>
 using namespace std;
 #include "nandgate.h"
-#include "wires.h"
+#include "model/wires/wires.h"
 
 int NandGate::ourCount = 0;
 
