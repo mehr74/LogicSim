@@ -4,6 +4,7 @@
 #include <QAbstractListModel>
 #include <QPoint>
 #include <QIcon>
+#include "gatetextures.h"
 
 class GatesModel : public QAbstractListModel
 {
@@ -22,10 +23,11 @@ public:
     Qt::DropActions supportedDropActions() const;
 
 
-    void addPiece(const QPixmap&);
+    void addPiece(const QPixmap&, int);
 
 private:
     QList<QPixmap> pixmaps;
+    QList<int> types;
     QPoint pnt;
 };
 

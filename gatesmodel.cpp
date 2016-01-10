@@ -7,11 +7,12 @@ GatesModel::GatesModel(QObject *parent)
 {
 }
 
-void GatesModel::addPiece(const QPixmap &pixmap)
+void GatesModel::addPiece(const QPixmap &pixmap, int type)
 {
     int row = 0;
     beginInsertRows(QModelIndex(), row, row);
     pixmaps.insert(row, pixmap);
+    types.insert(row, type);
     endInsertRows();
 }
 
@@ -25,6 +26,9 @@ QVariant GatesModel::data(const QModelIndex &index, int role) const
                          Qt::KeepAspectRatio, Qt::SmoothTransformation));
     else if (role == Qt::UserRole)
         return pixmaps.value(index.row());
+
+    else if (role == Qt::UserRole+1)
+        return types.value(index.row());
 
     return QVariant();
 }
@@ -46,7 +50,7 @@ bool GatesModel::dropMimeData(const QMimeData *data, Qt::DropAction action,
 QStringList GatesModel::mimeTypes() const
 {
     QStringList types;
-    types << "image/x-puzzle-piece";
+    types << "image/gates";
     return types;
 }
 
@@ -57,14 +61,17 @@ QMimeData *GatesModel::mimeData(const QModelIndexList &indexes) const
 
     QDataStream stream(&encodedData, QIODevice::WriteOnly);
 
-    foreach (QModelIndex index, indexes) {
+    foreach (QModelIndex index, indexes)
+    {
         if (index.isValid()) {
             QPixmap pixmap = data(index, Qt::UserRole).value<QPixmap>();
+            int logicObj = data(index, Qt::UserRole+1).value<int>();
             stream << pixmap;
+            stream << logicObj;
         }
     }
 
-    mimeData->setData("image/x-puzzle-piece", encodedData);
+    mimeData->setData("image/gates", encodedData);
     return mimeData;
 }
 
@@ -80,8 +87,3 @@ Qt::DropActions GatesModel::supportedDropActions() const
 {
     return Qt::CopyAction | Qt::MoveAction;
 }
-
-
-
-
-

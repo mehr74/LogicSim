@@ -11,5 +11,8 @@
         <file>src/onbit.jpg</file>
         <file>src/voltmeter.jpg</file>
         <file>src/empty.jpg</file>
+        <file>src/connector.jpg</file>
+        <file>src/connectorh.jpg</file>
+        <file>src/connectoru.jpg</file>
     </qresource>
 </RCC>

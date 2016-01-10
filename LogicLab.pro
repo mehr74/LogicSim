@@ -23,7 +23,8 @@ SOURCES += main.cpp \
     voltmeter.cpp \
     mainwindow.cpp \
     gatelist.cpp \
-    gatesmodel.cpp
+    gatesmodel.cpp \
+    circuit.cpp
 
 HEADERS += \
     wires.h \
@@ -42,7 +43,8 @@ HEADERS += \
     mainwindow.h \
     gatelist.h \
     gatesmodel.h \
-    gatetextures.h
+    gatetextures.h \
+    circuit.h
 
 OTHER_FILES +=
 
