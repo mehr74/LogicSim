@@ -30,27 +30,8 @@ void GateList::addPieces()
     QRect mRect;
     QSize *size = new QSize(80, 50);
 
-    cout << "Height : " << size->height() << endl;
-    cout << "Width  : " << size->width() << endl;
-
     piecePixmaps.clear();
     pieceRects.clear();
-/*
-    for(int i = 0; i < 10; i++)
-    {
-        mRect = QRect(10, i * (size->height() + 10) + 10, size->width() , size->height());
-        cout << "#-Add-Rectange-------------------------------------" << endl
-                << left << setw(15) << "#-Size: " << "("<< size->width() << ", " << size->height() << ")" << endl
-                << left << setw(15) << "#-Location: " << "(10, " << i*(size->height() + 10) + 10 << ")" << endl
-                << left << setw(15) << "#-Image: " << "\"" << objectPics[i] << "\"" << endl
-                << "#--------------------------------------------------\n" << endl;
-        QPixmap temp(objectPics[i]);
-        QPixmap *pieceImage = new QPixmap(temp.scaled(*size));
-
-        piecePixmaps.append(*pieceImage);
-        pieceRects.append(mRect);
-    }
-    */
 
     widthGap = 80;
     heightGap = 25;
@@ -73,16 +54,10 @@ void GateList::addPieces()
 
             piecePixmaps.append(*pieceImage);
             pieceRects.append(mRect);
+            pieceType.append(EMPTY);
+            pieceId.append(0);
         }
     }
-
-    for(int i = 0; i < pieceRects.size(); i++)
-    {
-        cout << "#-QRectangle" << endl
-                << "location" << "(" << pieceRects[i].x() << ", " << pieceRects[i].y() << ")" << endl
-                << "size" << "(" << pieceRects[i].width() << ", " << pieceRects[i].height() << ")" << endl;
-    }
-
 
     update();
 }
@@ -142,7 +117,6 @@ void GateList::paintEvent(QPaintEvent *event)
 
 void GateList::dragEnterEvent(QDragEnterEvent *event)
 {
-    cout << "DragEnterEvent called!" << endl;
     event->accept();
     /*
     if(event->mimeData())
@@ -165,7 +139,14 @@ void GateList::dragMoveEvent(QDragMoveEvent *event)
     int target = findApproximateLocation(event->pos());
     if(target !=-1)
     {
-        cout << "Location find : " << target << endl;
+        if(pieceType[target] != EMPTY)
+        {
+            highLightedRect = QRect();
+            event->ignore();
+            update();
+            return;
+        }
+
         highLightedRect = pieceRects[target];
         QByteArray pieceData = event->mimeData()->data("image/gates");
         QDataStream stream(&pieceData, QIODevice::ReadOnly);
@@ -183,10 +164,16 @@ void GateList::dragMoveEvent(QDragMoveEvent *event)
 
 void GateList::dropEvent(QDropEvent *event)
 {
-    cout << "DropEvent called!" << endl;
     int target = findApproximateLocation(event->pos());
     if(target != -1)
     {
+        if(pieceType[target] != EMPTY)
+        {
+            highLightedRect = QRect();
+            event->ignore();
+            return;
+        }
+
         QByteArray pieceData = event->mimeData()->data("image/gates");
         QDataStream stream(&pieceData, QIODevice::ReadOnly);
         int gateType;
@@ -197,7 +184,10 @@ void GateList::dropEvent(QDropEvent *event)
         addInputConnector(pieceRects[target], circuit->InCount(gateType));
         addOutputConnector(pieceRects[target]);
 
+        int id = circuit->addGate(gateType);
         piecePixmaps[target] = pixmap;
+        pieceType[target] = gateType;
+        pieceId[target] = id;
         highLightedRect = QRect();
     }
     update();
@@ -205,7 +195,6 @@ void GateList::dropEvent(QDropEvent *event)
 
 void GateList::mousePressEvent(QMouseEvent *event)
 {
-    cout << "MousePressEvent called at (" << event->pos().x() << ", " << event->pos().y() << ")" << endl;
     int target = findConnector(event->pos());
     if(target != -1)
     {
@@ -232,7 +221,6 @@ void GateList::mousePressEvent(QMouseEvent *event)
 
 void GateList::mouseMoveEvent(QMouseEvent *event)
 {
-    cout << "MouseMoveEvent called at (" << event->pos().x() << ", " << event->pos().y() << ")" << endl;
     int target = findConnector(event->pos());
     if(target != -1)
     {
@@ -314,8 +302,17 @@ void GateList::addOutputConnector(const QRect &rect)
 
 void GateList::addWire(const QPoint &start, const QPoint &end)
 {
+    if(start.x() > end.x())
+        addWire(end, start);
+
     QPolygon wire;
     wire.append(start);
+ //   wire.append(QPoint(start.x(), end.y()));
     wire.append(end);
     wires.append(wire);
+}
+
+int GateList::addConnection()
+{
+    return -1;
 }

@@ -34,6 +34,7 @@ private:
     int findConnector(const QPoint &pos) const;
     void addInputConnector(const QRect &rect, int number);
     void addOutputConnector(const QRect &rect);
+    int addConnection();
     void addPieces();
     int widgetHeight;
     int widgetWidth;
@@ -43,8 +44,10 @@ private:
     QRect highLightedRect;
     QRect highLightedConnector;
     QList<QPixmap> piecePixmaps;
-    QList<QRect> usedConnectors;
     QList<QRect> pieceRects;
+    QList<int> pieceType;
+    QList<int> pieceId;
+    QList<QRect> usedConnectors;
     QList<QRect> connectors;
     QList<QPolygon> wires;
 };
