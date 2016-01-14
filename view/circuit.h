@@ -18,6 +18,7 @@ private:
     vector<NandGate *> nandGates;
     vector<Inverter *> inverterGates;
     vector<NorGate *> norGates;
+    vector<XnorGate *> xnorGates;
 };
 
 

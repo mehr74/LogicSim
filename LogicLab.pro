@@ -24,7 +24,9 @@ SOURCES += main.cpp \
     view/gatelist.cpp \
     view/gatesmodel.cpp \
     view/mainwindow.cpp \
-    view/circuit.cpp
+    view/circuit.cpp \
+    model/gates/xnorgate.cpp \
+    model/gates/bit.cpp
 
 HEADERS += \
     model/gates/andgate.h \
@@ -44,7 +46,9 @@ HEADERS += \
     view/gatelist.h \
     view/gatesmodel.h \
     view/mainwindow.h \
-    view/circuit.h
+    view/circuit.h \
+    model/gates/xnorgate.h \
+    model/gates/bit.h
 
 
 OTHER_FILES +=

@@ -91,6 +91,16 @@ int Circuit::addGate(int gateType)
         cout << "*******************************************************\n" << endl;
         return norGates.size()-1;
     }
+    else if(gateType == XNOR_GATE)
+    {
+        XnorGate *tmpGate = new XnorGate();
+        xnorGates.push_back(tmpGate);
+
+        cout << "*******************************************************" << endl;
+        cout << "* NEW xnor gate #" << norGates.size() << endl;
+        cout << "*******************************************************\n" << endl;
+        return norGates.size()-1;
+    }
 
     return 0;
 }
