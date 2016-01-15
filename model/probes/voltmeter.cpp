@@ -1,5 +1,11 @@
 #include "voltmeter.h"
 
+VoltMeter::VoltMeter()
+  : myWire(ourWireFactory->MakeWire())
+{
+    myWire->AddGate(this);
+}
+
 VoltMeter::VoltMeter(Wire * w)
   : myWire(w)
 {

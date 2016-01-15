@@ -32,14 +32,15 @@ private:
     int findApproximateLocation(const QPoint &pos) const;
     void addWire(const QPoint &start, const QPoint &end);
     int findConnector(const QPoint &pos) const;
-    void addInputConnector(const QRect &rect, int number);
-    void addOutputConnector(const QRect &rect);
+    void addInputConnector(const QRect &rect, int number, int id);
+    void addOutputConnector(const QRect &rect, int id);
     int addConnection();
     void addPieces();
     int widgetHeight;
     int widgetWidth;
     Circuit *circuit;
     QRect wireStart;
+    int wireStartNum;
     QPixmap highLightedPixmap;
     QRect highLightedRect;
     QRect highLightedConnector;
@@ -49,6 +50,8 @@ private:
     QList<int> pieceId;
     QList<QRect> usedConnectors;
     QList<QRect> connectors;
+    QList<int> connectorsId;
+    QList<int> connectorsType;
     QList<QPolygon> wires;
 };
 

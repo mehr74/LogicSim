@@ -181,13 +181,15 @@ void GateList::dropEvent(QDropEvent *event)
         stream >> pixmap;
         stream >> gateType;
 
-        addInputConnector(pieceRects[target], circuit->InCount(gateType));
-        addOutputConnector(pieceRects[target]);
-
         int id = circuit->addGate(gateType);
+        circuit->testFunc();
         piecePixmaps[target] = pixmap;
         pieceType[target] = gateType;
         pieceId[target] = id;
+
+        addInputConnector(pieceRects[target], circuit->InCount(gateType), id);
+        addOutputConnector(pieceRects[target], id);
+
         highLightedRect = QRect();
     }
     update();
@@ -204,12 +206,15 @@ void GateList::mousePressEvent(QMouseEvent *event)
             usedConnectors.append(connectors[target]);
             QPoint start = QPoint(wireStart.x() + 5, wireStart.y() + 5);
             QPoint end = QPoint(connectors[target].x() + 5, connectors[target].y() + 5);
+            circuit->addConnection(connectorsId[wireStartNum], connectorsId[target],
+                                   connectorsType[wireStartNum], connectorsType[target]);
             addWire(start, end);
             wireStart = QRect();
         }
         else
         {
             wireStart = connectors[target];
+            wireStartNum = target;
         }
     }
     else
@@ -276,28 +281,36 @@ int GateList::findApproximateLocation(const QPoint &point)const
     return -1;
 }
 
-void GateList::addInputConnector(const QRect &rect, int number)
+void GateList::addInputConnector(const QRect &rect, int number, int id)
 {
     QRect mRect;
     if(number == 1)
     {
         mRect = QRect(rect.x()- 10, rect.y() + (rect.height()/2) - 5, 10, 10);
         connectors.append(mRect);
+        connectorsId.append(id);
+        connectorsType.append(INPUT_CONNECTOR1);
     }
     else if(number == 2)
     {
         mRect = QRect(rect.x()-10, rect.y() + 8, 10, 10);
         connectors.append(mRect);
+        connectorsId.append(id);
+        connectorsType.append(INPUT_CONNECTOR1);
         mRect = QRect(rect.x()-10, rect.y() + 32, 10, 10);
         connectors.append(mRect);
+        connectorsId.append(id);
+        connectorsType.append(INPUT_CONNECTOR2);
     }
 }
 
-void GateList::addOutputConnector(const QRect &rect)
+void GateList::addOutputConnector(const QRect &rect, int id)
 {
     QRect mRect;
     mRect = QRect(rect.x()+ rect.width(), rect.y() + (rect.height()/2) - 5, 10, 10);
     connectors.append(mRect);
+    connectorsId.append(id);
+    connectorsType.append(OUTPUT_CONNECTOR);
 }
 
 void GateList::addWire(const QPoint &start, const QPoint &end)

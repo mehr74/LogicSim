@@ -13,6 +13,7 @@ class Bit : public Gate
 
     int InCount()  const {return 0;}
     int OutCount() const {return 1;}
+    Wire * InWire(int n) const {return myOut; }
     Wire * OutWire(int n) const {return myOut;}
     Gate * clone();
 

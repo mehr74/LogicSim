@@ -20,6 +20,13 @@ enum LogicObject
     LAST_LOGIC_OBJ
 };
 
+enum GateStuff
+{
+    INPUT_CONNECTOR1,
+    INPUT_CONNECTOR2,
+    OUTPUT_CONNECTOR
+};
+
 static char objectPics[LAST_LOGIC_OBJ][100] = {
     ":src/andgate.jpg",
     ":src/orgate.jpg",
@@ -35,6 +42,23 @@ static char objectPics[LAST_LOGIC_OBJ][100] = {
     ":src/connector.jpg",
     ":src/connectorh.jpg",
     ":src/connectoru.jpg"
+};
+
+static char objectNames[LAST_LOGIC_OBJ][100] = {
+    "And Gate",
+    "Or Gate",
+    "Inverter",
+    "Nand Gate",
+    "Nor Gate",
+    "Xor Gate",
+    "Xnor Gate",
+    "On bit",
+    "Off bit",
+    "Voltmeter",
+    "Empty",
+    "Connector",
+    "Connector2",
+    "Connector3"
 };
 
 #endif // GATETEXTURES_H

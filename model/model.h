@@ -10,6 +10,7 @@
 #include "model/gates/norgate.h"
 #include "model/gates/connector.h"
 #include "model/gates/xnorgate.h"
+#include "model/gates/bit.h"
 #include "model/probes/gatetester.h"
 #include "model/probes/voltmeter.h"
 

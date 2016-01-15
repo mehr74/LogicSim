@@ -10,15 +10,11 @@ public:
     Circuit();
     int InCount(int gateType) const;
     int addGate(int gateType);
+    int addConnection(int gateId1, int gateId2, int connectorType1, int connectorType2);
+    void testFunc();
 
 private:
-    vector<AndGate * > andGates;
-    vector<OrGate * > orGates;
-    vector<XorGate * > xorGates;
-    vector<NandGate *> nandGates;
-    vector<Inverter *> inverterGates;
-    vector<NorGate *> norGates;
-    vector<XnorGate *> xnorGates;
+    vector<Gate *> gates;
 };
 
 

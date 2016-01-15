@@ -31,78 +31,83 @@ int Circuit::InCount(int gateType) const
 
 int Circuit::addGate(int gateType)
 {
-    if(gateType == AND_GATE)
+    switch(gateType)
     {
-        AndGate *tmpGate = new AndGate();
-        andGates.push_back(tmpGate);
-
-        cout << "*******************************************************" << endl;
-        cout << "* NEW and gate #" << andGates.size() << endl;
-        cout << "*******************************************************\n" << endl;
-        return andGates.size()-1;
+    case AND_GATE:
+        cout << "NEW AND GATE ADDED!" << endl;
+        gates.push_back(new AndGate());
+        break;
+    case OR_GATE:
+        cout << "NEW OR GATE ADDED!" << endl;
+        gates.push_back(new OrGate());
+        break;
+    case INVERTER:
+        cout << "NEW INVERTER GATE ADDED!" << endl;
+        gates.push_back(new Inverter());
+        break;
+    case NAND_GATE:
+        cout << "NEW NAND GATE ADDED!" << endl;
+        gates.push_back(new NandGate());
+        break;
+    case NOR_GATE:
+        cout << "NEW NOR GATE ADDED!" << endl;
+        gates.push_back(new NorGate());
+        break;
+    case XOR_GATE:
+        cout << "NEW XOR GATE ADDED!" << endl;
+        gates.push_back(new XorGate());
+        break;
+    case XNOR_GATE:
+        cout << "NEW XNOR GATE ADDED!" << endl;
+        gates.push_back(new XnorGate());
+        break;
+    case ON_BIT:
+        cout << "NEW ON BIT ADDED!" << endl;
+        gates.push_back(new Bit(true));
+        break;
+    case OFF_BIT:
+        cout << "NEW OFF BIT ADDED!" << endl;
+        gates.push_back(new Bit(false));
+        break;
+    case VOLTMETER:
+        cout << "NEW VOLTMETER ADDED!" << endl;
+        gates.push_back(new VoltMeter());
+        break;
     }
-    else if(gateType == OR_GATE)
-    {
-        OrGate *tmpGate = new OrGate();
-        orGates.push_back(tmpGate);
 
-        cout << "*******************************************************" << endl;
-        cout << "* NEW or gate #" << orGates.size() << endl;
-        cout << "*******************************************************\n" << endl;
-        return orGates.size()-1;
-    }
-    else if(gateType == XOR_GATE)
-    {
-        XorGate *tmpGate = new XorGate();
-        xorGates.push_back(tmpGate);
+    return gates.size()-1;
+}
 
-        cout << "*******************************************************" << endl;
-        cout << "* NEW xor gate #" << xorGates.size() << endl;
-        cout << "*******************************************************\n" << endl;
-        return xorGates.size()-1;
-    }
-    else if(gateType == NAND_GATE)
-    {
-        NandGate *tmpGate = new NandGate();
-        nandGates.push_back(tmpGate);
+int Circuit::addConnection(int gateId1, int gateId2, int connectorType1, int connectorType2)
+{
+    cout << "Add connection" << endl;
+    cout << *gates[gateId1] << endl;
+    cout << *gates[gateId2] << endl;
 
-        cout << "*******************************************************" << endl;
-        cout << "* NEW nand gate #" << nandGates.size() << endl;
-        cout << "*******************************************************\n" << endl;
-        return inverterGates.size()-1;
-    }
-    else if(gateType == INVERTER)
-    {
-        Inverter *tmpGate = new Inverter();
-        inverterGates.push_back(tmpGate);
+    Wire *start;
+    Wire *end;
 
-        cout << "*******************************************************" << endl;
-        cout << "* NEW inverter gate #" << inverterGates.size() << endl;
-        cout << "*******************************************************\n" << endl;
-        return inverterGates.size()-1;
-    }
-    else if(gateType == NOR_GATE)
-    {
-        NorGate *tmpGate = new NorGate();
-        norGates.push_back(tmpGate);
+    if(connectorType1 == OUTPUT_CONNECTOR)
+        start = gates[gateId1]->OutWire(connectorType1);
+    else
+        start = gates[gateId1]->InWire(connectorType1);
 
-        cout << "*******************************************************" << endl;
-        cout << "* NEW nor gate #" << norGates.size() << endl;
-        cout << "*******************************************************\n" << endl;
-        return norGates.size()-1;
-    }
-    else if(gateType == XNOR_GATE)
-    {
-        XnorGate *tmpGate = new XnorGate();
-        xnorGates.push_back(tmpGate);
+    if(connectorType2 == OUTPUT_CONNECTOR)
+        end = gates[gateId2]->OutWire(connectorType2);
+    else
+        end = gates[gateId2]->InWire(connectorType2);
 
-        cout << "*******************************************************" << endl;
-        cout << "* NEW xnor gate #" << norGates.size() << endl;
-        cout << "*******************************************************\n" << endl;
-        return norGates.size()-1;
-    }
+    cout << *start << endl;
+    cout << *end << endl;
+
+    Connect(start, end);
 
     return 0;
+}
+
+void Circuit::testFunc()
+{
+
 }
 
 

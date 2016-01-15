@@ -16,6 +16,7 @@ Bit::Bit(bool value, const string& name)
     myNumber(ourCount)
 {
     ourCount++;
+    myOut->AddGate(this);
 }
 
 void Bit::Act()
@@ -32,7 +33,7 @@ string Bit::tostring() const
 
 Gate * Bit::clone()
 {
-  //  return new Bit(myValue ,myName);
+    return new Bit(myValue ,myName);
 }
 
 string Bit::deepString() const
