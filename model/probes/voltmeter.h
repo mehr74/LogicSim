@@ -6,7 +6,6 @@
 class VoltMeter : public Gate
 {
   public:
-    VoltMeter ();
     VoltMeter (Wire * w);
     virtual void Act( );
     virtual string tostring() const;

@@ -31,76 +31,73 @@ int Circuit::InCount(int gateType) const
 
 int Circuit::addGate(int gateType)
 {
+    cout << "\n-----------------------" << endl;
     switch(gateType)
     {
     case AND_GATE:
-        cout << "NEW AND GATE ADDED!" << endl;
         gates.push_back(new AndGate());
         break;
     case OR_GATE:
-        cout << "NEW OR GATE ADDED!" << endl;
         gates.push_back(new OrGate());
         break;
     case INVERTER:
-        cout << "NEW INVERTER GATE ADDED!" << endl;
         gates.push_back(new Inverter());
         break;
     case NAND_GATE:
-        cout << "NEW NAND GATE ADDED!" << endl;
         gates.push_back(new NandGate());
         break;
     case NOR_GATE:
-        cout << "NEW NOR GATE ADDED!" << endl;
         gates.push_back(new NorGate());
         break;
     case XOR_GATE:
-        cout << "NEW XOR GATE ADDED!" << endl;
         gates.push_back(new XorGate());
         break;
     case XNOR_GATE:
-        cout << "NEW XNOR GATE ADDED!" << endl;
         gates.push_back(new XnorGate());
         break;
     case ON_BIT:
-        cout << "NEW ON BIT ADDED!" << endl;
         gates.push_back(new Bit(true));
         break;
     case OFF_BIT:
-        cout << "NEW OFF BIT ADDED!" << endl;
         gates.push_back(new Bit(false));
         break;
-    case VOLTMETER:
-        cout << "NEW VOLTMETER ADDED!" << endl;
-        gates.push_back(new VoltMeter());
-        break;
     }
+    cout << "NEW GATE" << endl;
+    cout << gates.back()->deepString() << endl;
+    VoltMeter *volt = new VoltMeter(gates.back()->OutWire(0));
+    gates.push_back(volt);
 
-    return gates.size()-1;
+    return gates.size()-2;
 }
 
 int Circuit::addConnection(int gateId1, int gateId2, int connectorType1, int connectorType2)
 {
+    cout << "\n**********************" << endl;
     cout << "Add connection" << endl;
-    cout << *gates[gateId1] << endl;
-    cout << *gates[gateId2] << endl;
+
 
     Wire *start;
     Wire *end;
 
     if(connectorType1 == OUTPUT_CONNECTOR)
-        start = gates[gateId1]->OutWire(connectorType1);
+        start = gates[gateId1]->OutWire(0);
     else
         start = gates[gateId1]->InWire(connectorType1);
 
     if(connectorType2 == OUTPUT_CONNECTOR)
-        end = gates[gateId2]->OutWire(connectorType2);
+        end = gates[gateId2]->OutWire(0);
     else
         end = gates[gateId2]->InWire(connectorType2);
 
-    cout << *start << endl;
-    cout << *end << endl;
+    cout << *gates[gateId1] << *start
+         << "  <=====>  "
+         << *gates[gateId2] << *end
+         << endl;
+    cout << "**********************" << endl;
 
     Connect(start, end);
+
+
 
     return 0;
 }

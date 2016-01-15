@@ -12,11 +12,11 @@ enum LogicObject
     XNOR_GATE,
     ON_BIT,
     OFF_BIT,
-    VOLTMETER,
     EMPTY,
     CONNECTOR,
     CONNECTOR_HOVERED,
     CONNECTOR_USED,
+    VOLTMETER,
     LAST_LOGIC_OBJ
 };
 
@@ -37,7 +37,6 @@ static char objectPics[LAST_LOGIC_OBJ][100] = {
     ":src/xnorgate.jpg",
     ":src/onbit.jpg",
     ":src/offbit.jpg",
-    ":src/voltmeter.jpg",
     ":src/empty.jpg",
     ":src/connector.jpg",
     ":src/connectorh.jpg",

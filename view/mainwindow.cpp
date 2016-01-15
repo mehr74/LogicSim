@@ -34,7 +34,7 @@ void MainWindow::setupWidgets()
     piecesList->setModel(model);
 
     gateList = new GateList(this, QSize(this->width(), this->height()));
-    for(int i = 0; i < LAST_LOGIC_OBJ-4; i++)
+    for(int i = 0; i < LAST_LOGIC_OBJ-5; i++)
         model->addPiece(QPixmap(objectPics[i]), i);
 
     ui->layout1->addWidget(piecesList);

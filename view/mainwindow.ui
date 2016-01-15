@@ -16,6 +16,10 @@
   <property name="windowTitle">
    <string>Logic Laboratory</string>
   </property>
+  <property name="windowIcon">
+   <iconset resource="../logiclab.qrc">
+    <normaloff>:/src/winIcon.jpg</normaloff>:/src/winIcon.jpg</iconset>
+  </property>
   <widget class="QWidget" name="widget">
    <property name="minimumSize">
     <size>
@@ -47,6 +51,8 @@
    </widget>
   </widget>
  </widget>
- <resources/>
+ <resources>
+  <include location="../logiclab.qrc"/>
+ </resources>
  <connections/>
 </ui>

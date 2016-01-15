@@ -1,3 +1,3 @@
 * Add device class as an abstract class, and make gate class as a subclass of it
 * Add bit class 
-* Add xnor class
+* Make a graphic voltmeter

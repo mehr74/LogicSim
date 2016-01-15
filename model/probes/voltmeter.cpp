@@ -1,11 +1,5 @@
 #include "voltmeter.h"
 
-VoltMeter::VoltMeter()
-  : myWire(ourWireFactory->MakeWire())
-{
-    myWire->AddGate(this);
-}
-
 VoltMeter::VoltMeter(Wire * w)
   : myWire(w)
 {
@@ -18,6 +12,6 @@ void VoltMeter::Act()
 }
 string VoltMeter::tostring() const
 {
-    return "probe " + myWire->tostring();
+    return "voltmeter " + myWire->tostring();
 }
 
