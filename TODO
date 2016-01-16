@@ -1,2 +1,1 @@
-* Add device class as an abstract class, and make gate class as a subclass of it
-* Fix bugs in the interface voltmeter
+* Make wires better 

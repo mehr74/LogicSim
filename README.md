@@ -1,5 +1,5 @@
 ﻿## The Logic Simulator
-Logic Simulator is a practical part of a course assignment on learning "advanced programming" [advanced programming course](http://ce.sharif.edu/courses/94-95/1/ce244-2), held in Sharif university of technology in 2015-2016.
+Logic Simulator is a practical part of a course assignment on learning "[advanced programming course](http://ce.sharif.edu/courses/94-95/1/ce244-2)", held in Sharif university of technology in 2015-2016.
 
 
 ### Contacts

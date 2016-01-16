@@ -48,7 +48,8 @@ HEADERS += \
     view/mainwindow.h \
     view/circuit.h \
     model/gates/xnorgate.h \
-    model/gates/bit.h
+    model/gates/bit.h \
+    model/gates/device.h
 
 
 OTHER_FILES +=
