@@ -36,8 +36,8 @@ Gate * XnorGate::clone()
 
 void XnorGate::Act( )
 {
-    myOuts[0]->SetSignal(((!myIns[0]->GetSignal()) && myIns[1]->GetSignal())
-                        ||(myIns[0]->GetSignal() && (!myIns[1]->GetSignal())));
+    myOuts[0]->SetSignal(!(((!myIns[0]->GetSignal()) && myIns[1]->GetSignal())
+                        ||(myIns[0]->GetSignal() && (!myIns[1]->GetSignal()))));
 }
 
 string XnorGate::tostring() const
