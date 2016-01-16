@@ -16,6 +16,8 @@ enum LogicObject
     CONNECTOR,
     CONNECTOR_HOVERED,
     CONNECTOR_USED,
+    PROBE_ON,
+    PROBE_OFF,
     VOLTMETER,
     LAST_LOGIC_OBJ
 };
@@ -40,7 +42,9 @@ static char objectPics[LAST_LOGIC_OBJ][100] = {
     ":src/empty.jpg",
     ":src/connector.jpg",
     ":src/connectorh.jpg",
-    ":src/connectoru.jpg"
+    ":src/connectoru.jpg",
+    ":src/probeOn.jpg",
+    ":src/probeOff.jpg"
 };
 
 static char objectNames[LAST_LOGIC_OBJ][100] = {

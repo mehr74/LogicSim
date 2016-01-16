@@ -1,8 +1,8 @@
 #include <iostream>
 #include <sstream>
 using namespace std;
-#include "gates.h"
-#include "wires.h"
+#include "model/model.h"
+#include "model/wires/wires.h"
 
 WireFactory * Gate::ourWireFactory = new WireFactory;
 

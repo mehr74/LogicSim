@@ -83,6 +83,20 @@ void GateList::paintEvent(QPaintEvent *event)
         painter.drawPixmap(connectors[i], *connectorPixmap);
     }
 
+    for (int i = 0; i < probes.size(); ++i)
+    {
+        QPixmap *probePixmap;
+        if(circuit->getSignal(probeIds[i]) == true)
+        {
+            probePixmap = new QPixmap(objectPics[PROBE_ON]);
+        }
+        else
+        {
+            probePixmap = new QPixmap(objectPics[PROBE_OFF]);
+        }
+        painter.drawPixmap(probes[i], *probePixmap);
+    }
+
     for (int i =0; i < usedConnectors.size(); ++i)
     {
         QPixmap *connectorPixmap = new QPixmap(objectPics[CONNECTOR_USED]);
@@ -182,7 +196,6 @@ void GateList::dropEvent(QDropEvent *event)
         stream >> gateType;
 
         int id = circuit->addGate(gateType);
-        circuit->testFunc();
         piecePixmaps[target] = pixmap;
         pieceType[target] = gateType;
         pieceId[target] = id;
@@ -311,6 +324,10 @@ void GateList::addOutputConnector(const QRect &rect, int id)
     connectors.append(mRect);
     connectorsId.append(id);
     connectorsType.append(OUTPUT_CONNECTOR);
+
+    mRect = QRect(rect.x()+rect.width() - 10, rect.y() + rect.height() - 10, 8, 8);
+    probes.append(mRect);
+    probeIds.append(id);
 }
 
 void GateList::addWire(const QPoint &start, const QPoint &end)

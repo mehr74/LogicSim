@@ -5,9 +5,11 @@
 #include <string>
 #include <vector>
 #include "model/wires/wires.h"
+#include <QObject>
+
 using namespace std;
 class WireFactory;
-class Gate
+class Gate : public QObject
 {
   public:
     virtual ~Gate() {}

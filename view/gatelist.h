@@ -52,6 +52,8 @@ private:
     QList<QRect> connectors;
     QList<int> connectorsId;
     QList<int> connectorsType;
+    QList<QRect> probes;
+    QList<int> probeIds;
     QList<QPolygon> wires;
 };
 

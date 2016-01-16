@@ -14,5 +14,7 @@
         <file>src/connectorh.jpg</file>
         <file>src/connectoru.jpg</file>
         <file>src/winIcon.jpg</file>
+        <file>src/probeOff.jpg</file>
+        <file>src/probeOn.jpg</file>
     </qresource>
 </RCC>

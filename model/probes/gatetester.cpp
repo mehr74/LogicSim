@@ -1,5 +1,5 @@
 #include "gatetester.h"
-#include "gate.h"
+#include "model/model.h"
 void GateTester::Test(Gate * gate)
 {
     int inputs = gate->InCount();

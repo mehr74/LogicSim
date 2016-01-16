@@ -1,8 +1,8 @@
 #include <iostream>
 #include <sstream>
 using namespace std;
-#include "wires.h"
-#include "gates.h"
+#include "model/wires/wires.h"
+#include "model/model.h"
 
 
 int Wire::ourCount = 0;

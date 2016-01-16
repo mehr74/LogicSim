@@ -65,9 +65,12 @@ int Circuit::addGate(int gateType)
     cout << "NEW GATE" << endl;
     cout << gates.back()->deepString() << endl;
     VoltMeter *volt = new VoltMeter(gates.back()->OutWire(0));
-    gates.push_back(volt);
+    voltMeters.push_back(volt);
+    QObject::connect(voltMeters.back(), SIGNAL(signalChanged(bool,int)),
+                    this, SLOT(updateSignal(bool,int)));
+    signalVolt.push_back(gates.back()->OutWire(0)->GetSignal());
 
-    return gates.size()-2;
+    return gates.size()-1;
 }
 
 int Circuit::addConnection(int gateId1, int gateId2, int connectorType1, int connectorType2)
@@ -101,10 +104,14 @@ int Circuit::addConnection(int gateId1, int gateId2, int connectorType1, int con
 
     return 0;
 }
-
-void Circuit::testFunc()
+void Circuit::updateSignal(bool signal, int index)
 {
+    signalVolt[index] = signal;
+}
 
+bool Circuit::getSignal(int index)
+{
+    return signalVolt[index];
 }
 
 
