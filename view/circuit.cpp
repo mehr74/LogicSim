@@ -99,7 +99,7 @@ int Circuit::addConnection(int gateId1, int gateId2, int connectorType1, int con
          << endl;
     cout << "**********************" << endl;
 
-    if(gateTypes[gateId1] == OFF_BIT || gateTypes[gateId2] == ON_BIT)
+    if(gateTypes[gateId1] == OFF_BIT || gateTypes[gateId1] == ON_BIT)
     {
         end->SetSignal(gateTypes[gateId1] - OFF_BIT);
         return 0;

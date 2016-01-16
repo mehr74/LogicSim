@@ -105,8 +105,10 @@ void GateList::paintEvent(QPaintEvent *event)
 
     for (int i = 0; i < wires.size(); i++)
     {
+        QPainterPath path;
+        path.addPolygon(wires[i]);
         painter.setPen(QPen(Qt::black, 2, Qt::SolidLine, Qt::RoundCap));
-        painter.drawPolygon(wires[i]);
+        painter.drawPath(path);
     }
 
     if(highLightedRect.isValid())
@@ -333,11 +335,15 @@ void GateList::addOutputConnector(const QRect &rect, int id)
 void GateList::addWire(const QPoint &start, const QPoint &end)
 {
     if(start.x() > end.x())
+    {
         addWire(end, start);
+        return;
+    }
 
     QPolygon wire;
     wire.append(start);
- //   wire.append(QPoint(start.x(), end.y()));
+    wire.append(QPoint(start.x() + start.y() / 12 + 10, start.y()));
+    wire.append(QPoint(start.x() + start.y()/ 12 + 10, end.y()));
     wire.append(end);
     wires.append(wire);
 }

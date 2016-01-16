@@ -24,6 +24,7 @@ protected:
    void dropEvent(QDropEvent *);
    void mousePressEvent(QMouseEvent *);
    void mouseMoveEvent(QMouseEvent *);
+   void mouseGrabber(QMouseEvent *);
 
 private:
     int widthGap;
@@ -53,6 +54,7 @@ private:
     QList<int> connectorsId;
     QList<int> connectorsType;
     QList<QRect> probes;
+    QList<QRect> branches;
     QList<int> probeIds;
     QList<QPolygon> wires;
 };
