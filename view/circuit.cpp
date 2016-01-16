@@ -62,6 +62,7 @@ int Circuit::addGate(int gateType)
         gates.push_back(new Bit(false));
         break;
     }
+    gateTypes.push_back(gateType);
     cout << "NEW GATE" << endl;
     cout << gates.back()->deepString() << endl;
     VoltMeter *volt = new VoltMeter(gates.back()->OutWire(0));
@@ -97,6 +98,17 @@ int Circuit::addConnection(int gateId1, int gateId2, int connectorType1, int con
          << *gates[gateId2] << *end
          << endl;
     cout << "**********************" << endl;
+
+    if(gateTypes[gateId1] == OFF_BIT || gateTypes[gateId2] == ON_BIT)
+    {
+        end->SetSignal(gateTypes[gateId1] - OFF_BIT);
+        return 0;
+    }
+    if(gateTypes[gateId2] == OFF_BIT || gateTypes[gateId2] == ON_BIT)
+    {
+        start->SetSignal(gateTypes[gateId2] - OFF_BIT);
+        return 0;
+    }
 
     Connect(start, end);
 

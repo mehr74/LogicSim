@@ -21,6 +21,7 @@ private slots:
 
 private:
     vector<Gate *> gates;
+    vector<int> gateTypes;
     vector<VoltMeter *> voltMeters;
     vector<bool> signalVolt;
 };

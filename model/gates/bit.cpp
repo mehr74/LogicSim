@@ -7,6 +7,7 @@ Bit::Bit(bool value, Wire* out, const string& name)
   : myValue(value), myOut(out), myName(name), myNumber(ourCount)
 {
     ourCount++;
+    myOut->AddGate(this);
 }
 
 Bit::Bit(bool value, const string& name)
